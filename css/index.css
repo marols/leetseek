@@ -1,0 +1,17 @@
+html {
+    height: 100%;
+}
+body {
+    background: white;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.content {
+    flex: 1;
+}
+
+footer {
+    width: 40%;
+    font-size: small;
+}
