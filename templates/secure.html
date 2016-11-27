@@ -19,19 +19,21 @@
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </div>
 
-    <div class="flex-column search-results">
+    <div class="flex-column search-results" ng-if="!awaitingResponse && searchResult">
 
-        <md-list class="md-dense" ng-if="!awaitingResponse && searchResult" flex>
-                <md-list-item class="md-3-line card" ng-repeat="entity in searchResult">
-                    <img ng-src="{{entity.link}}" class="md-avatar"
-                         alt="{{entity.title}}"/>
-                    <div class="md-list-item-text">
-                        <h3><a href="{{entity.link}}" target="_blank">{{ entity.title }}</a></h3>
-                        <h4>Topic: {{ entity.topic }}</h4>
-                        <p>Points: {{ entity.points }}</p>
-                    </div>
-                </md-list-item>
-        </md-list>
-
+        <div class="card image-card" ng-repeat="entity in searchResult">
+            <a href="{{getLink(entity)}}" target="_blank" title="{{entity.title}}"><h4>{{entity.title}}</h4></a>
+            <div class="flex-column">
+                <a href="{{entity.link}}" target="_blank"><img class="image" ng-src="{{entity.link}}" alt="{{entity.title}}"/></a>
+            </div>
+            <details class="flex-column">
+                <summary>Show more</summary>
+                <ul class="metadata">
+                    <li ng-repeat="(key, value) in entity">
+                        {{key}} : {{value}}
+                    </li>
+                </ul>
+            </details>
+        </div>
     </div>
 </section>

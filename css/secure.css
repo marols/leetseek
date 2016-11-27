@@ -14,8 +14,42 @@ md-input-container {
     background: white;
 }
 
-md-list-item {
-    width: 400px;
+.image {
+    width: 100px;
+}
+
+.image-card {
+    padding: 8px;
+    margin: 8px;
+    max-width: 300px;
+}
+
+.image-card a {
+    text-decoration: none;
+}
+
+.image-card a:hover {
+    text-decoration: underline;
+}
+
+.image-card h4 {
+    margin: 0;
+    padding: 0 0 4px 0;
+
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.metadata {
+    align-items: flex-start;
+    font-size: small;
+    list-style: none;
+}
+
+details {
+    font-size: small;
+    padding-top: 8px;
 }
 
 img {

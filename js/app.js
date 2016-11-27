@@ -56,6 +56,15 @@ leetseek.controller("SearchController", function($scope, $http) {
                 $scope.awaitingResponse = false;
             });
     };
+
+    $scope.getLink = function(entity) {
+        var base = "//imgur.com/";
+
+        if (entity.is_album) {
+            return entity.link
+        }
+        return base + entity.id;
+    };
 });
 
 leetseek.controller("FooterController", function($scope) {
