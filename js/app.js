@@ -10,9 +10,9 @@ leetseek.config(function($stateProvider, $urlRouterProvider, $mdThemingProvider)
             templateUrl: 'templates/login.html',
             controller: 'LoginController'
         })
-        .state('search', {
-            url: '/search',
-            templateUrl: 'templates/search.html',
+        .state('secure', {
+            url: '/secure',
+            templateUrl: 'templates/secure.html',
             controller: 'SearchController'
         });
     $urlRouterProvider.otherwise('/login');
@@ -42,19 +42,18 @@ leetseek.controller("SearchController", function($scope, $http) {
         });
     }
 
-    $scope.viral = getRequest('https://api.imgur.com/3/gallery/hot/viral/0.json');
-
     $scope.search = function(query) {
+        $scope.awaitingResponse = true;
+
         return getRequest('https://api.imgur.com/3/gallery/search?q=' + query)
-            .then(function successCallback(response) {
-                // this callback will be called asynchronously
-                // when the response is available
-                $scope.searchResponse = response;
-                console.log($scope.searchResponse.data.data)
-            }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                $scope.searchResponse = response;
+            .then(function(response) {
+                $scope.searchResult = response.data.data;
+                console.log($scope.searchResult)
+            }, function(error) {
+                console.log(error);
+                return false;
+            }).finally(function() {
+                $scope.awaitingResponse = false;
             });
     };
 });

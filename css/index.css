@@ -3,15 +3,45 @@ html {
 }
 body {
     background: white;
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-.content {
-    flex: 1;
+    height: auto;
 }
 
-footer {
+.flex-row,
+.flex-column,
+.footer {
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+}
+
+.flex-row {
+    flex-direction: row;
+    justify-content: center;
+}
+
+.flex-column {
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.logo {
+    flex: 0 0 auto;
+}
+
+.content {
+    flex-grow: 1;
+}
+
+.card {
+    background: rgb(250,250,250);
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2);
+    padding: 0px 16px;
+    margin: 16px;
+}
+
+.footer {
+    flex-direction: row;
+    justify-content: space-between;
     width: 40%;
     font-size: small;
 }

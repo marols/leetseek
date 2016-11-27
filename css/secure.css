@@ -1,0 +1,23 @@
+md-input-container {
+    display: flex;
+    padding: 10px 36px;
+}
+
+.progress {
+    display: flex;
+    background: white;
+    margin: 50px;
+}
+
+.search-results {
+    margin-top: 36px;
+    background: white;
+}
+
+md-list-item {
+    width: 400px;
+}
+
+img {
+    max-width: 250px;
+}

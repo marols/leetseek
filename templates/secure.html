@@ -1,0 +1,37 @@
+<section class="flex-column">
+    <div class="card">
+        <h3>Search Imgur</h3>
+        <p>Ever wanted to find something on Imgur? This might be your chance!</p>
+
+        <form id="login" autocomplete="off" ng-submit="search(query)">
+            <md-input-container md-no-float>
+                <input autofocus="true" placeholder="Enter search phrase" type="text" ng-model="query"
+                       aria-label="search query">
+            </md-input-container>
+        </form>
+
+        <p class="flex-row">
+            <md-button class="md-primary md-raised" ng-click="search(query)">Search</md-button>
+        </p>
+    </div>
+
+    <div class="flex-column progress" ng-if="awaitingResponse">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+
+    <div class="flex-column search-results">
+
+        <md-list class="md-dense" ng-if="!awaitingResponse && searchResult" flex>
+                <md-list-item class="md-3-line card" ng-repeat="entity in searchResult">
+                    <img ng-src="{{entity.link}}" class="md-avatar"
+                         alt="{{entity.title}}"/>
+                    <div class="md-list-item-text">
+                        <h3><a href="{{entity.link}}" target="_blank">{{ entity.title }}</a></h3>
+                        <h4>Topic: {{ entity.topic }}</h4>
+                        <p>Points: {{ entity.points }}</p>
+                    </div>
+                </md-list-item>
+        </md-list>
+
+    </div>
+</section>
