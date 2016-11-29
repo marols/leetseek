@@ -24,7 +24,7 @@
         <div class="card image-card" ng-repeat="entity in searchResult">
             <a href="{{getLink(entity)}}" target="_blank" title="{{entity.title}}"><h4>{{entity.title}}</h4></a>
             <div class="flex-column">
-                <a href="{{entity.link}}" target="_blank"><img class="image" ng-src="{{entity.link}}" alt="{{entity.title}}"/></a>
+                <a href="{{getLink(entity)}}" target="_blank"><img class="image" ng-src="{{entity.cover_link}}" alt="{{entity.title}}"/></a>
             </div>
             <details class="flex-column">
                 <summary>Show more</summary>

@@ -42,13 +42,27 @@ leetseek.controller("SearchController", function($scope, $http) {
         });
     }
 
+    function getImageUrl(element) {
+        if (element.is_album) {
+            getRequest("https://api.imgur.com/3/image/" + element.cover)
+                .then(function(image) {
+                    return element['cover_link'] = image.data.data.link;
+                });
+        } else {
+            return element['cover_link'] = element.link;
+        }
+    }
+
     $scope.search = function(query) {
         $scope.awaitingResponse = true;
 
         return getRequest('https://api.imgur.com/3/gallery/search?q=' + query)
             .then(function(response) {
                 $scope.searchResult = response.data.data;
-                console.log($scope.searchResult)
+
+                $scope.searchResult.map(function(element) {
+                    return getImageUrl(element);
+                });
             }, function(error) {
                 console.log(error);
                 return false;
@@ -57,13 +71,12 @@ leetseek.controller("SearchController", function($scope, $http) {
             });
     };
 
-    $scope.getLink = function(entity) {
-        var base = "//imgur.com/";
-
-        if (entity.is_album) {
-            return entity.link
+    $scope.previousPage = function(query) {
+        if ($scope.searchResultPage >= 0) {
+            $scope.searchResultPage--;
         }
-        return base + entity.id;
+        $scope.search(query);
+    };
     };
 });
 
