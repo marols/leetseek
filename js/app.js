@@ -31,6 +31,8 @@ leetseek.controller("SearchController", function($scope, $http) {
     $scope.userInformation = JSON.parse(window.localStorage.getItem("imgur"));
     $scope.accessToken = $scope.userInformation.oauth.access_token;
 
+    $scope.searchResultPage = 0;
+
     function getRequest(url) {
 
         return $http({
@@ -56,7 +58,7 @@ leetseek.controller("SearchController", function($scope, $http) {
     $scope.search = function(query) {
         $scope.awaitingResponse = true;
 
-        return getRequest('https://api.imgur.com/3/gallery/search?q=' + query)
+        return getRequest('https://api.imgur.com/3/gallery/search/time/' + $scope.searchResultPage + '?q=' + query)
             .then(function(response) {
                 $scope.searchResult = response.data.data;
 
@@ -77,6 +79,14 @@ leetseek.controller("SearchController", function($scope, $http) {
         }
         $scope.search(query);
     };
+
+    $scope.nextPage = function(query) {
+        $scope.searchResultPage++;
+        $scope.search(query);
+    };
+
+    $scope.getLink = function(entity) {
+        return entity.is_album ? entity.link : "//imgur.com/" + entity.id;
     };
 });
 

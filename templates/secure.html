@@ -15,6 +15,16 @@
         </p>
     </div>
 
+    <div class="flex-row">
+        <md-button class="md-raised md-icon-button" ng-click="previousPage(query)" ng-disabled="!searchResult || searchResultPage === 0" title="Previous page" aria-label="previous">
+            <i class="mdi mdi-chevron-left"></i>
+        </md-button>
+        [ {{searchResultPage}} ]
+        <md-button class="md-raised md-icon-button" ng-click="nextPage(query)" ng-disabled="!searchResult" title="Next page" aria-label="next">
+            <i class="mdi mdi-chevron-right"></i>
+        </md-button>
+    </div>
+
     <div class="flex-column progress" ng-if="awaitingResponse">
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </div>
