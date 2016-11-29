@@ -10,18 +10,15 @@ md-input-container {
 }
 
 .search-results {
-    margin-top: 36px;
+    margin: 36px 10%;
     background: white;
-}
-
-.image {
-    width: 100px;
 }
 
 .image-card {
     padding: 8px;
     margin: 8px;
-    max-width: 300px;
+    max-width: 200px;
+    float: left;
 }
 
 .image-card a {
@@ -36,7 +33,7 @@ md-input-container {
     margin: 0;
     padding: 0 0 4px 0;
 
-    overflow:hidden;
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
@@ -52,6 +49,20 @@ details {
     padding-top: 8px;
 }
 
-img {
-    max-width: 250px;
+.image {
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.grid {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.grid:after {
+    content: "";
+    display: table;
+    clear: both;
 }
