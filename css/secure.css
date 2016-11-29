@@ -17,16 +17,8 @@ md-input-container {
 .image-card {
     padding: 8px;
     margin: 8px;
-    max-width: 200px;
+    max-width: 250px;
     float: left;
-}
-
-.image-card a {
-    text-decoration: none;
-}
-
-.image-card a:hover {
-    text-decoration: underline;
 }
 
 .image-card h4 {

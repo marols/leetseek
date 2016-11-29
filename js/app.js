@@ -1,7 +1,5 @@
 var leetseek = angular.module("leetseek", ['ui.router', 'ngMaterial']);
-
 var clientId = "0139c2d5a75abb5";
-var clientSecret = "c9cba23d88fad34b05f5c0bb6f8a0044b7d62348";
 
 leetseek.config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
     $stateProvider
@@ -28,8 +26,7 @@ leetseek.controller("LoginController", function($scope) {
 });
 
 leetseek.controller("SearchController", function($scope, $http) {
-    $scope.userInformation = JSON.parse(window.localStorage.getItem("imgur"));
-    $scope.accessToken = $scope.userInformation.oauth.access_token;
+    var accessToken = JSON.parse(window.localStorage.getItem("imgur")).oauth.access_token;
 
     $scope.searchResultPage = 0;
 
@@ -39,7 +36,7 @@ leetseek.controller("SearchController", function($scope, $http) {
             method: 'GET',
             url: url,
             headers: {
-                'Authorization': 'Bearer ' + $scope.accessToken
+                'Authorization': 'Bearer ' + accessToken
             }
         });
     }
@@ -85,6 +82,14 @@ leetseek.controller("SearchController", function($scope, $http) {
         $scope.search(query);
     };
 
+    $scope.disablePreviousButton = function() {
+        return !$scope.searchResult || $scope.searchResultPage === 0 || $scope.awaitingResponse;
+    };
+
+    $scope.disableNextButton = function() {
+        return !$scope.searchResult || $scope.awaitingResponse;
+    };
+
     $scope.getLink = function(entity) {
         return entity.is_album ? entity.link : "//imgur.com/" + entity.id;
     };
@@ -92,6 +97,11 @@ leetseek.controller("SearchController", function($scope, $http) {
 
 leetseek.controller("FooterController", function($scope) {
     $scope.links = [
+        {
+            name: "E-mail",
+            url: "mailto:martin.walter.swe@gmail.com",
+            icon: "mdi-email-outline"
+        },
         {
             name: "GitHub",
             url: "https://github.com/marols",
@@ -102,6 +112,8 @@ leetseek.controller("FooterController", function($scope) {
             url: "https://se.linkedin.com/in/mwalter84",
             icon: "mdi-linkedin-box"
         }
-    ];
-});
+    ]
+    ;
+})
+;
 
